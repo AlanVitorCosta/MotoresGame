@@ -15,15 +15,20 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_right"):
 		$Sprite.set_flip_h(false)
-		velocity.x = 6*SPEED
+		velocity.x = 3*SPEED
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x = -SPEED
 		$Sprite.set_flip_h(true)
 	else:
-		velocity.x = 10*SPEED
+		velocity.x = 5*SPEED
 		
 	if Input.is_action_pressed("ui_up") && on_ground:
 			velocity.y = JUMP_POWER
+	
+	if Input.is_action_pressed("ui_down"):
+		$Camera2D.zoom = Vector2(4,4)
+	else:
+		$Camera2D.zoom = Vector2(1,1)
 	
 	velocity.y += GRAVITY
 	

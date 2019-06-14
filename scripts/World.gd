@@ -9,7 +9,7 @@ export var hill_range = 100
 var screensize
 var terrain = PoolVector2Array()
 
-var sand_texture = preload("res://sprites/Spr_sand.png")
+var sand_texture = preload("res://sprites/textura_duna.png")
 const base_y_offset = 200
 
 func _ready():
@@ -26,20 +26,22 @@ func _ready():
 	terrain = PoolVector2Array()
 	screensize = get_viewport().get_visible_rect().size
 	#Setando o ponto inicial:
-	var start_y = screensize.y * 3/4 + (-hill_range + randi() % hill_range*2)
+	var start_y = screensize.y * 3/4 + (-hill_range + 50 % hill_range*2)
 	terrain.append(Vector2(0,start_y))
 
 	generate_hills()
 	pass
 
 func _process(delta):
+	#print(terrain[0])
+	#print($Player.SPEED)
 	if terrain[-1].x < $Player.position.x + screensize.x / 2:
 		generate_hills()
 	pass
 
 func generate_hills():
 	
-	#Setando variaveil 
+	#Setando variaveis 
 	var hill_width = screensize.x / num_hills
 	var hill_slices = hill_width / slice
 	var start = terrain[-1] #Start recebe o ultimo ponto do terreno
@@ -62,8 +64,11 @@ func generate_hills():
 		#incrementando a altura do ponto de inicio:
 		start.y += height
 	#Criando poligono de colisão:
+	var static_B2d = StaticBody2D.new()
+	add_child(static_B2d)
 	var shape = CollisionPolygon2D.new()
-	$StaticBody2D.add_child(shape)
+	#$StaticBody2D.add_child(shape)
+	static_B2d.add_child(shape)
 	poly.append(Vector2(terrain[-1].x, screensize.y + base_y_offset))
 	poly.append(Vector2(start.x, screensize.y + base_y_offset))
 	shape.polygon = poly
@@ -71,7 +76,7 @@ func generate_hills():
 	var sand = Polygon2D.new()
 	sand.polygon = poly
 	sand.texture = sand_texture
-	add_child(sand)
+	shape.add_child(sand)
 	pass
 	
 func declive(x):

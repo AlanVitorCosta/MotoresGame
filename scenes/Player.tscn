@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/GarbageCollector.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.5824
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 400 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -23,6 +27,24 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_top = -100
+limit_bottom = 700
+smoothing_enabled = true
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -2002.03, -25.2002 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1.948, 372.043 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
