@@ -29,7 +29,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/BackGround"]
-position = Vector2( 0, -103 )
+position = Vector2( 0, 2 )
 texture = ExtResource( 3 )
 centered = false
 __meta__ = {
@@ -39,15 +39,18 @@ __meta__ = {
 [node name="Mar" type="ParallaxLayer" parent="ParallaxBackground"]
 editor/display_folded = true
 motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 1024, 0 )
+motion_mirroring = Vector2( 1020, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Mar"]
-position = Vector2( 7.17499, 323.824 )
+position = Vector2( 7.17499, 332.824 )
 texture = ExtResource( 4 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DunaTraseira" type="ParallaxLayer" parent="ParallaxBackground"]
 editor/display_folded = true

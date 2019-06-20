@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 100
 const GRAVITY = 10
-const JUMP_POWER = -350
+const JUMP_POWER = -500
 const FLOOR = Vector2(0, -1)
 
 onready var sprite = get_node("Sprite")
@@ -21,30 +21,31 @@ func _physics_process(delta):
 		velocity.x = 8*SPEED
 		if anim == "Crouch":
 			velocity.x = 6*SPEED
-	
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x = 3*SPEED
 		if anim == "Crouch":
 			velocity.x = SPEED
-	
 	else:
 		velocity.x = 5*SPEED
 		if anim == "Crouch":
 			velocity.x = 3*SPEED
 	
-	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_key_pressed(KEY_C):
+	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_action_pressed("ui_down"):
 		velocity.y = JUMP_POWER
+		anim = "jump"
+		#if !on_ground && !Input.is_action_pressed("ui_down"):
+		#	anim = "Jump"
 		
-	if Input.is_key_pressed(KEY_C):
+	if Input.is_action_pressed("ui_down"):
 		anim = "Crouch"
-	
+	elif !on_ground && Input.is_action_pressed("ui_up"):
+		anim = "Jump"
 	else:
 		anim = "Idle"
 	
-	if !on_ground && !Input.is_key_pressed(KEY_C):
-		anim = "Jump"
 	
-	if Input.is_action_pressed("ui_down"):
+	
+	if Input.is_key_pressed(KEY_Z):
 		$Camera2D.zoom = Vector2(4,4)
 	else:
 		$Camera2D.zoom = Vector2(1,1)	
