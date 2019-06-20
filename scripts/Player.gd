@@ -5,30 +5,51 @@ const GRAVITY = 10
 const JUMP_POWER = -350
 const FLOOR = Vector2(0, -1)
 
+onready var sprite = get_node("Sprite")
+onready var collider2d = get_node("CollisionShape2D")
+
+var anim = "Idle"
 var velocity = Vector2()
 var on_ground = false
 
 func _ready():
 	pass 
-	
+
 func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_right"):
-		$Sprite.set_flip_h(false)
-		velocity.x = 3*SPEED
+		velocity.x = 8*SPEED
+		if anim == "Crouch":
+			velocity.x = 6*SPEED
+	
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x = -SPEED
-		$Sprite.set_flip_h(true)
+		velocity.x = 3*SPEED
+		if anim == "Crouch":
+			velocity.x = SPEED
+	
 	else:
 		velocity.x = 5*SPEED
+		if anim == "Crouch":
+			velocity.x = 3*SPEED
+	
+	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_key_pressed(KEY_C):
+		velocity.y = JUMP_POWER
 		
-	if Input.is_action_pressed("ui_up") && on_ground:
-			velocity.y = JUMP_POWER
+	if Input.is_key_pressed(KEY_C):
+		anim = "Crouch"
+	
+	else:
+		anim = "Idle"
+	
+	if !on_ground && !Input.is_key_pressed(KEY_C):
+		anim = "Jump"
 	
 	if Input.is_action_pressed("ui_down"):
 		$Camera2D.zoom = Vector2(4,4)
 	else:
-		$Camera2D.zoom = Vector2(1,1)
+		$Camera2D.zoom = Vector2(1,1)	
+	
+	sprite.play(anim)
 	
 	velocity.y += GRAVITY
 	
