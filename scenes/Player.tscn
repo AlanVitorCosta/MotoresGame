@@ -2,14 +2,14 @@
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/GarbageCollector.gd" type="Script" id=2]
-[ext_resource path="res://sprites/Personagem/boyzaum.png" type="Texture" id=3]
-[ext_resource path="res://sprites/Personagem/boyzaum2.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Personagem/abaixar.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=8]
-[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=9]
-[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=10]
+[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Personagem/boyzaum.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Personagem/boyzaum2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Personagem/abaixar.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.4795
@@ -20,35 +20,42 @@ extents = Vector2( 10, 400 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.5
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": false,
-"name": "Crouch",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": false,
 "name": "Falling",
 "speed": 2.5
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.5
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "Crouch",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.569588, 4.27187 )
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 400, 0 )
 current = true
 limit_top = -100
 limit_bottom = 700
@@ -75,6 +82,9 @@ __meta__ = {
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 3
+frame = 1
 playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

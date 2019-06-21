@@ -11,6 +11,8 @@ onready var collider2d = get_node("CollisionShape2D")
 var anim = "Idle"
 var velocity = Vector2()
 var on_ground = false
+var can_animate_jump = false
+
 
 func _ready():
 	pass 
@@ -32,15 +34,17 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_action_pressed("ui_down"):
 		velocity.y = JUMP_POWER
-		anim = "jump"
+
+		#anim = "jump"
 		#if !on_ground && !Input.is_action_pressed("ui_down"):
 		#	anim = "Jump"
 		
 	if Input.is_action_pressed("ui_down"):
 		anim = "Crouch"
-	elif !on_ground && Input.is_action_pressed("ui_up"):
+	elif !on_ground && Input.is_action_pressed("ui_up") && can_animate_jump:
 		anim = "Jump"
-	else:
+		can_animate_jump = false
+	elif(on_ground):
 		anim = "Idle"
 	
 	
@@ -56,6 +60,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		on_ground = true
+		can_animate_jump = true
 	else:
 		on_ground = false
 	

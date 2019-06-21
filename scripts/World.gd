@@ -10,7 +10,9 @@ var screensize
 var terrain = PoolVector2Array()
 
 var sand_texture = preload("res://sprites/textura_duna.png")
-const base_y_offset = 200
+var enemy_bugueiro = preload("res://scenes/Bugueiro.tscn")
+const BASE_Y_OFFSET = 200
+const BASE_X_OFFSET = 800
 
 func _ready():
 	randomize()
@@ -25,6 +27,7 @@ func _ready():
 	
 	terrain = PoolVector2Array()
 	screensize = get_viewport().get_visible_rect().size
+	screensize.x = screensize.x
 	#Setando o ponto inicial:
 	var start_y = screensize.y * 3/4 + (-hill_range + 50 % hill_range*2)
 	terrain.append(Vector2(0,start_y))
@@ -33,10 +36,10 @@ func _ready():
 	pass
 
 func _process(delta):
-	#print(terrain[0])
-	#print($Player.SPEED)
-	if terrain[-1].x < $Player.position.x + screensize.x / 2:
+
+	if terrain[-1].x < $Player.position.x + (screensize.x + BASE_X_OFFSET) / 2:
 		generate_hills()
+		spawn_enemy(open_simplex_noise.get_noise_2d($Player.position.x, $Player.position.y))
 	pass
 
 func generate_hills():
@@ -69,8 +72,8 @@ func generate_hills():
 	var shape = CollisionPolygon2D.new()
 	#$StaticBody2D.add_child(shape)
 	static_B2d.add_child(shape)
-	poly.append(Vector2(terrain[-1].x, screensize.y + base_y_offset))
-	poly.append(Vector2(start.x, screensize.y + base_y_offset))
+	poly.append(Vector2(terrain[-1].x, screensize.y + BASE_Y_OFFSET))
+	poly.append(Vector2(start.x, screensize.y + BASE_Y_OFFSET))
 	shape.polygon = poly
 	#aplicando textura da areia:
 	var sand = Polygon2D.new()
@@ -79,6 +82,40 @@ func generate_hills():
 	shape.add_child(sand)
 	pass
 	
-func declive(x):
-	return -x
+func spawn_enemy(noise_sample):
+	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
+	
+	if noise_sample < -0.2:
+		print("spawn dromedario")
+		#exemplo de spawn:
+		var enemy = enemy_bugueiro.instance()
+		enemy.position = spawn_location
+		add_child(enemy)
+		return
+	if noise_sample < 0:
+		print("spawn bugueiro")
+		return
+	if noise_sample < 0.2:
+		print("spawn urubu")
+		return
+	else:
+		print("nada")
+		
+	pass
+
+func spawn_item(noise_sample):
+	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
+	
+	if noise_sample < -0.2:
+		print("lixo spawn garrafa")
+		return
+	if noise_sample < 0:
+		print("lixo spawn pinico")
+		return
+	if noise_sample < 0.2:
+		print("lixo spawn batata")
+		return
+	else:
+		print("nada")
+		
 	pass
