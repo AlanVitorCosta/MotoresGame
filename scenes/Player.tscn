@@ -14,9 +14,8 @@
 [ext_resource path="res://sprites/Personagem/boyzaum.png" type="Texture" id=12]
 [ext_resource path="res://sprites/Personagem/boyzaum2.png" type="Texture" id=13]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 21.4795
-height = 19.0964
+[sub_resource type="CircleShape2D" id=4]
+radius = 34.4592
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 400 )
@@ -51,8 +50,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.569588, 4.27187 )
-shape = SubResource( 1 )
+position = Vector2( -0.0713427, 2.27887 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -85,7 +84,7 @@ __meta__ = {
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 3
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

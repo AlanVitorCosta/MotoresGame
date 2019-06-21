@@ -18,6 +18,7 @@ func _ready():
 	pass 
 
 func _physics_process(delta):
+	collider2d.scale = Vector2 (1, 1)
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = 8*SPEED
@@ -41,6 +42,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("ui_down") && anim != "Falling":
 		anim = "Crouch"
+		collider2d.scale = Vector2 (0.8, 0.8)
 	elif !on_ground && Input.is_action_pressed("ui_up") && can_animate_jump:
 		anim = "Jump"
 		can_animate_jump = false
@@ -48,7 +50,8 @@ func _physics_process(delta):
 		anim = "Idle"
 	
 	if anim == "Falling":
-		velocity = Vector2 (0, velocity.y)
+		collider2d.scale = Vector2 (1, 0.65)
+		velocity = Vector2(0, 100)
 		can_animate_jump = false
 	
 	if Input.is_key_pressed(KEY_Z):
