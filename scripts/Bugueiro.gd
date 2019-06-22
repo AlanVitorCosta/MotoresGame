@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if collision_info:
 			var collision_normal = collision_info.normal	
 			var new_angle = rad2deg(collision_normal.angle_to_point(velocity * delta)) + 35 # << 35 is a random number, I tried others but this works better
-			rotation_degrees = new_angle;
+			$AnimatedSprite.rotation_degrees = new_angle;
 			print(new_angle)
 		velocity = move_and_slide(velocity, FLOOR)
 	pass

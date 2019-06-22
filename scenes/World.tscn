@@ -21,8 +21,6 @@ collision_mask = 14
 position = Vector2( 526, 48 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
-layer = -3
 
 [node name="BackGround" type="ParallaxLayer" parent="ParallaxBackground"]
 editor/display_folded = true
@@ -91,5 +89,7 @@ __meta__ = {
 }
 
 [node name="GUI" parent="ParallaxBackground" instance=ExtResource( 7 )]
-margin_right = 140.0
-margin_bottom = 80.0
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 141.0
+margin_bottom = 84.0
