@@ -2,12 +2,13 @@ extends KinematicBody2D
 
 const SPEED = 100
 const GRAVITY = 10
-const JUMP_POWER = -500
+const JUMP_POWER = -450
 const FLOOR = Vector2(0, -1)
 
 onready var sprite = get_node("Sprite")
 onready var collider2d = get_node("CollisionShape2D")
 
+var can_change_scene = false
 var anim setget set_anim
 var velocity = Vector2()
 var on_ground = false
@@ -23,35 +24,39 @@ func _physics_process(delta):
 	collider2d.scale = Vector2 (1, 1)
 	
 	if Input.is_action_pressed("ui_right"):
-		velocity.x = 8*SPEED
+		velocity.x = 6*SPEED
 		if anim == "Crouch":
-			velocity.x = 6*SPEED
+			velocity.x = 4*SPEED
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x = 3*SPEED
+		velocity.x = 2*SPEED
 		if anim == "Crouch":
 			velocity.x = SPEED
 	else:
-		velocity.x = 5*SPEED
+		velocity.x = 4*SPEED
 		if anim == "Crouch":
-			velocity.x = 3*SPEED
-			
+			velocity.x = 2*SPEED
+	
 	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_action_pressed("ui_down") && anim != "Falling":
 		velocity.y = JUMP_POWER
-		
+		$jumpFx.play()
+	
 	if Input.is_action_pressed("ui_down") && anim != "Falling":
 		anim = "Crouch"
-		collider2d.scale = Vector2 (0.8, 0.8)
+		collider2d.scale = Vector2 (0.75, 0.75)
 	elif !on_ground && Input.is_action_pressed("ui_up") && can_animate_jump:
 		anim = "Jump"
 		can_animate_jump = false
 	elif(on_ground && anim != "Falling"):
 		anim = "Idle"
-		
+	
 	if anim == "Falling":
 		collider2d.scale = Vector2 (1, 0.65)
 		velocity = Vector2(0, 100)
 		can_animate_jump = false
-		
+	
+	if can_change_scene == true:
+		get_tree().change_scene("res://scenes/GameOver.tscn")
+	
 	if Input.is_key_pressed(KEY_Z):
 		$Camera2D.zoom = Vector2(4,4)
 	else:
@@ -72,3 +77,7 @@ func _physics_process(delta):
 	
 func set_anim(new_anim):
 	anim = new_anim
+
+func _on_Sprite_animation_finished():
+	if anim == "Falling":
+		can_change_scene = true
