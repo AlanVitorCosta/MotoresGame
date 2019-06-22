@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Dromedario.gd" type="Script" id=1]
-[ext_resource path="res://sprites/textura_duna.png" type="Texture" id=2]
-[ext_resource path="res://sounds/102739__robinhood76__01868-monster-moan.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/102739__robinhood76__01868-monster-moan.wav" type="AudioStream" id=2]
+[ext_resource path="res://sprites/Obstaculos/dromedario1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Obstaculos/dromedario2.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.0313, 1.96727 )
+extents = Vector2( 31.4334, 1.96727 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15.6137, 15.9677 )
+extents = Vector2( 33.642, 48.313 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 1.0
+} ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 collision_layer = 4
@@ -19,15 +28,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0246029, 14.689 )
+position = Vector2( 18.95, 34.4947 )
 shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.733333, 0.0980392, 0.0980392, 1 )
-texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -38,6 +40,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 18.617, -13.9107 )
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -46,6 +49,15 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [node name="camelFx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -20.0
+stream = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2.15, 2.15 )
+frames = SubResource( 3 )
+animation = "Idle"
+playing = true
+flip_h = true
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
