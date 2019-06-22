@@ -28,7 +28,6 @@ func _ready():
 	terrain = PoolVector2Array()
 	screensize = get_viewport().get_visible_rect().size
 	screensize.x = screensize.x
-	#Setando o ponto inicial:
 	var start_y = screensize.y * 3/4 + (-hill_range + 50 % hill_range*2)
 	terrain.append(Vector2(0,start_y))
 
@@ -44,38 +43,29 @@ func _process(delta):
 
 func generate_hills():
 	
-	#Setando variaveis 
 	var hill_width = screensize.x / num_hills
 	var hill_slices = hill_width / slice
-	var start = terrain[-1] #Start recebe o ultimo ponto do terreno
-
+	var start = terrain[-1] 
 	var poly = PoolVector2Array()
 
 	for i in range(num_hills):
 		var height = int(abs(open_simplex_noise.get_noise_2d(start.x, start.y)) * 10000) % hill_range
 		start.y -= height
-
 		for j in range(0, hill_slices):
-			#Criando pontos de curva:
 			var hill_point = Vector2()
 			hill_point.x = start.x + j * slice + hill_width * i
 			hill_point.y = start.y + height * cos(2 * PI/ hill_slices * j)
-			#Adcionando o ponto de curva aos vetores:
-			#$Line2D.add_point(hill_point)
 			terrain.append(hill_point)
 			poly.append(hill_point)
-		#incrementando a altura do ponto de inicio:
 		start.y += height
-	#Criando poligono de colisão:
+
 	var static_B2d = StaticBody2D.new()
 	add_child(static_B2d)
 	var shape = CollisionPolygon2D.new()
-	#$StaticBody2D.add_child(shape)
 	static_B2d.add_child(shape)
 	poly.append(Vector2(terrain[-1].x, screensize.y + BASE_Y_OFFSET))
 	poly.append(Vector2(start.x, screensize.y + BASE_Y_OFFSET))
 	shape.polygon = poly
-	#aplicando textura da areia:
 	var sand = Polygon2D.new()
 	sand.polygon = poly
 	sand.texture = sand_texture
@@ -86,14 +76,13 @@ func spawn_enemy(noise_sample):
 	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
 	
 	if noise_sample < -0.2:
-		print("spawn dromedario")
-		#exemplo de spawn:
+		print("spawn bugueiro")
 		var enemy = enemy_bugueiro.instance()
 		enemy.position = spawn_location
 		add_child(enemy)
 		return
 	if noise_sample < 0:
-		print("spawn bugueiro")
+		print("spawn dromedario")
 		return
 	if noise_sample < 0.2:
 		print("spawn urubu")

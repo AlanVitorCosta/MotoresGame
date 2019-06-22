@@ -12,9 +12,11 @@ var anim setget set_anim
 var velocity = Vector2()
 var on_ground = false
 var can_animate_jump = false
+var recycling_points = 0
 
 func _ready():
 	anim = "Idle"
+	recycling_points = 0
 	pass 
 
 func _physics_process(delta):
@@ -32,13 +34,9 @@ func _physics_process(delta):
 		velocity.x = 5*SPEED
 		if anim == "Crouch":
 			velocity.x = 3*SPEED
-	
+			
 	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_action_pressed("ui_down") && anim != "Falling":
 		velocity.y = JUMP_POWER
-
-		#anim = "jump"
-		#if !on_ground && !Input.is_action_pressed("ui_down"):
-		#	anim = "Jump"
 		
 	if Input.is_action_pressed("ui_down") && anim != "Falling":
 		anim = "Crouch"
@@ -48,12 +46,12 @@ func _physics_process(delta):
 		can_animate_jump = false
 	elif(on_ground && anim != "Falling"):
 		anim = "Idle"
-	
+		
 	if anim == "Falling":
 		collider2d.scale = Vector2 (1, 0.65)
 		velocity = Vector2(0, 100)
 		can_animate_jump = false
-	
+		
 	if Input.is_key_pressed(KEY_Z):
 		$Camera2D.zoom = Vector2(4,4)
 	else:
