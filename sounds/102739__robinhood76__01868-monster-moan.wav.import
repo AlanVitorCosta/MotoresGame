@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/102739__robinhood76__01868-monster-moan.wav-cf0bddbe900e5004e8a1ad9f24dc76ee.sample"
+
+[deps]
+
+source_file="res://sounds/102739__robinhood76__01868-monster-moan.wav"
+dest_files=[ "res://.import/102739__robinhood76__01868-monster-moan.wav-cf0bddbe900e5004e8a1ad9f24dc76ee.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

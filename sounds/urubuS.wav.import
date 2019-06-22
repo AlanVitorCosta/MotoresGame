@@ -11,11 +11,11 @@ dest_files=[ "res://.import/urubuS.wav-87fa178d25e8063be5b0794a44d9936e.sample" 
 
 [params]
 
-force/8_bit=false
-force/mono=false
+force/8_bit=true
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop=true
 compress/mode=0
