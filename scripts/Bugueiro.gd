@@ -23,6 +23,9 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	
 	velocity = move_and_slide(velocity, FLOOR)
+	
+	
+	
 	pass
 
 func _on_Area2D_body_entered(body):

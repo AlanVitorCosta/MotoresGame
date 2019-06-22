@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const GRAVITY = 9
+const GRAVITY = 8.5
 const FLOOR = Vector2(0, -1)
 
 onready var timer = get_node("Timer")

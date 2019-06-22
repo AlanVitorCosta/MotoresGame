@@ -40,10 +40,13 @@ func get_sprite_by_itemID(itemID):
 
 func get_points_by_itemID(itemID):
 	if itemID == RECICLAVEIS.garrafa:
+		print("lixo spawn garrafa")
 		return 5
 	if itemID == RECICLAVEIS.lata:
+		print("lixo spawn lata")
 		return 4
 	if itemID == RECICLAVEIS.plastico:
+		print("lixo spawn plastico")
 		return 10
 	else:
 		return 0

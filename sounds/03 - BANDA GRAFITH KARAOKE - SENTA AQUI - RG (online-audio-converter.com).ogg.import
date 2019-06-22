@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/03 - BANDA GRAFITH KARAOKE - SENTA AQUI - RG (online-audio-converter.com).ogg-69862fe9d8b626c590d5f9f745e0fc6c.oggstr"
+
+[deps]
+
+source_file="res://sounds/03 - BANDA GRAFITH KARAOKE - SENTA AQUI - RG (online-audio-converter.com).ogg"
+dest_files=[ "res://.import/03 - BANDA GRAFITH KARAOKE - SENTA AQUI - RG (online-audio-converter.com).ogg-69862fe9d8b626c590d5f9f745e0fc6c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -15,14 +15,13 @@ var enemy_bugueiro = preload("res://scenes/Bugueiro.tscn")
 var enemy_dromedario = preload("res://scenes/Dromedario.tscn")
 var enemy_urubu = preload("res://scenes/Urubu.tscn")
 var coletavel = preload("res://scenes/Coletavel.tscn")
-
 const BASE_Y_OFFSET = 200
 const BASE_X_OFFSET = 800
 const RECICLAVEIS = {
-	'nothing': -1,
-	'garrafa': 0,
-	'lata': 1,
-	'plastico': 2
+	'nothing' : -1,
+	'garrafa' : 0,
+	'lata' : 1,
+	'plastico' : 2
 }
 
 func _ready():
@@ -100,19 +99,19 @@ func spawn_enemy(noise_sample):
 	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
 	
 	if noise_sample < -0.2:
-		#spawn bugueiro
+		print("spawn bugueiro")
 		var enemy = enemy_bugueiro.instance()
 		enemy.position = spawn_location
 		add_child(enemy)
 		return
 	if noise_sample < 0:
-		#spawn dromedario
+		print("spawn dromedario")
 		var enemy = enemy_dromedario.instance()
 		enemy.position = spawn_location
 		add_child(enemy)
 		return
 	if noise_sample < 0.2:
-		#spawn urubu
+		print("spawn urubu")
 		var enemy = enemy_urubu.instance()
 		enemy.position = spawn_location
 		add_child(enemy)
@@ -126,21 +125,21 @@ func spawn_item(noise_sample):
 	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
 	
 	if noise_sample < -0.2:
-		#lixo spawn garrafa
+		print("lixo spawn garrafa")
 		var garrafa = coletavel.instance()
 		garrafa.position = spawn_location
 		garrafa.itemID = RECICLAVEIS.garrafa
 		add_child(garrafa)
 		return
 	if noise_sample < 0:
-		#lixo spawn lata
+		print("lixo spawn lata")
 		var lata = coletavel.instance()
 		lata.position = spawn_location
 		lata.itemID = RECICLAVEIS.lata
 		add_child(lata)
 		return
 	if noise_sample < 0.2:
-		#lixo spawn plastico
+		print("lixo spawn plastico")
 		var plastico = coletavel.instance()
 		plastico.position = spawn_location
 		plastico.itemID = RECICLAVEIS.plastico
@@ -148,4 +147,5 @@ func spawn_item(noise_sample):
 		return
 	else:
 		print("sem lixo")
+		
 	pass
