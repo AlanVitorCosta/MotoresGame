@@ -6,6 +6,7 @@ export var num_hills = 1
 export var slice = 10
 export var hill_range = 100
 
+var rp_number
 var screensize
 var terrain = PoolVector2Array()
 
@@ -26,6 +27,8 @@ const RECICLAVEIS = {
 
 func _ready():
 	randomize()
+	rp_number = $ParallaxBackground/GUI/HBoxContainer/Bars/Count/Background/Number
+	
 	#Criando ruido
 	open_simplex_noise = OpenSimplexNoise.new()
 	open_simplex_noise.seed = randi()
@@ -46,7 +49,7 @@ func _ready():
 	pass
 
 func _process(delta):
-
+	rp_number.text = str($Player.recycling_points)
 	if terrain[-1].x < $Player.position.x + (screensize.x + BASE_X_OFFSET) / 2:
 		generate_hills()
 		spawn_enemy(open_simplex_noise.get_noise_2d($Player.position.x, $Player.position.y))

@@ -42,10 +42,8 @@ func get_points_by_itemID(itemID):
 	if itemID == RECICLAVEIS.garrafa:
 		return 5
 	if itemID == RECICLAVEIS.lata:
-		print("lixo spawn pinico")
 		return 4
 	if itemID == RECICLAVEIS.plastico:
-		print("lixo spawn batata")
 		return 10
 	else:
 		return 0
