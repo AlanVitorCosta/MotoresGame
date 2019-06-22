@@ -11,6 +11,8 @@ var terrain = PoolVector2Array()
 
 var sand_texture = preload("res://sprites/textura_duna.png")
 var enemy_bugueiro = preload("res://scenes/Bugueiro.tscn")
+var enemy_dromedario = preload("res://scenes/Dromedario.tscn")
+var enemy_urubu = preload("res://scenes/Urubu.tscn")
 const BASE_Y_OFFSET = 200
 const BASE_X_OFFSET = 800
 
@@ -86,17 +88,22 @@ func spawn_enemy(noise_sample):
 	var spawn_location = Vector2($Player.position.x + 1400, $Player.position.y - 200)
 	
 	if noise_sample < -0.2:
-		print("spawn dromedario")
-		#exemplo de spawn:
+		print("spawn bugueiro")
 		var enemy = enemy_bugueiro.instance()
 		enemy.position = spawn_location
 		add_child(enemy)
 		return
 	if noise_sample < 0:
-		print("spawn bugueiro")
+		print("spawn dromedario")
+		var enemy = enemy_dromedario.instance()
+		enemy.position = spawn_location
+		add_child(enemy)
 		return
 	if noise_sample < 0.2:
 		print("spawn urubu")
+		var enemy = enemy_urubu.instance()
+		enemy.position = spawn_location
+		add_child(enemy)
 		return
 	else:
 		print("nada")

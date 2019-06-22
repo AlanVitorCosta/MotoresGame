@@ -14,6 +14,7 @@ script = ExtResource( 1 )
 texture_mode = -1089988082
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 14
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 526, 48 )
