@@ -89,7 +89,7 @@ __meta__ = {
 }
 
 [node name="GUI" parent="ParallaxBackground" instance=ExtResource( 7 )]
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 141.0
-margin_bottom = 84.0
+margin_left = -13.4167
+margin_top = -14.4027
+margin_right = 126.583
+margin_bottom = 65.5973

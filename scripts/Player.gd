@@ -8,6 +8,7 @@ const FLOOR = Vector2(0, -1)
 onready var sprite = get_node("Sprite")
 onready var collider2d = get_node("CollisionShape2D")
 
+var play_particles = 0
 var tocar_musicFx = 0
 var tocar_deathFx = 0
 var tocar_moveFx = 0
@@ -80,11 +81,20 @@ func _physics_process(delta):
 	if is_on_floor():
 		on_ground = true
 		can_animate_jump = true
+		
+		if play_particles == 0:
+			$Particles2D.emitting = true
+			play_particles = 1
+		
 		if tocar_moveFx == 0:
 			$moveFx.play()
 			tocar_moveFx = 1
 	else:
 		on_ground = false
+		
+		if play_particles == 1:
+			$Particles2D.emitting = false
+			play_particles = 0
 	
 	velocity = move_and_slide(velocity, FLOOR)
 	pass

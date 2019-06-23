@@ -24,7 +24,9 @@ func _on_Coletavel_body_entered(body):
 	if(body.get_name() == "Player"):
 		body.recycling_points = body.recycling_points + get_points_by_itemID(itemID)
 		print(body.recycling_points)
-		queue_free()
+		$Sprite.visible = false
+		$Particles2D.emitting = true
+		$colletableFx.play()
 	pass
 
 func get_sprite_by_itemID(itemID):
@@ -51,3 +53,7 @@ func get_points_by_itemID(itemID):
 	else:
 		return 0
 	pass
+
+func _on_colletableFx_finished():
+	if $Particles2D.emitting == false:
+		queue_free()
