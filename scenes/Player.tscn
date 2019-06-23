@@ -4,15 +4,15 @@
 [ext_resource path="res://scripts/GarbageCollector.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Personagem/boyzaum.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Personagem/boyzaum2.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Personagem/abaixar.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=8]
-[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=9]
-[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=10]
-[ext_resource path="res://sprites/Personagem/cair1.png" type="Texture" id=11]
-[ext_resource path="res://sprites/Personagem/cair2.png" type="Texture" id=12]
-[ext_resource path="res://sprites/Personagem/cair3.png" type="Texture" id=13]
+[ext_resource path="res://sprites/Personagem/cair1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Personagem/cair2.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Personagem/cair3.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Personagem/abaixar.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=10]
+[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=11]
+[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=12]
+[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=13]
 [ext_resource path="res://sounds/456373__felixyadomi__hop9.wav" type="AudioStream" id=14]
 [ext_resource path="res://sounds/hit_fall.wav" type="AudioStream" id=15]
 [ext_resource path="res://sounds/364999__saul92__arena-cayendo.wav" type="AudioStream" id=16]
@@ -31,20 +31,20 @@ animations = [ {
 "name": "Idle",
 "speed": 2.5
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "Falling",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 8 ) ],
 "loop": false,
 "name": "Crouch",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": false,
-"name": "Falling",
-"speed": 4.0
 } ]
 
 [sub_resource type="ParticlesMaterial" id=4]
@@ -52,6 +52,7 @@ emission_shape = 1
 emission_sphere_radius = 10.0
 flag_disable_z = true
 gravity = Vector3( 0, 70, 0 )
+angular_velocity = 2.68542e-006
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 10.0
@@ -94,6 +95,7 @@ shape = SubResource( 2 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 3 )
 animation = "Idle"
+frame = 3
 playing = true
 __meta__ = {
 "_edit_lock_": true

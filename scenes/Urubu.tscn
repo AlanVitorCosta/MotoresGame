@@ -52,7 +52,7 @@ volume_db = -25.0
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 2
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

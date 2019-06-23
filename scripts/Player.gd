@@ -37,7 +37,7 @@ func _physics_process(delta):
 		if anim == "Crouch":
 			velocity.x = SPEED
 	else:
-		velocity.x = 4*SPEED
+		velocity.x = 5*SPEED
 		if anim == "Crouch":
 			velocity.x = 2*SPEED
 	
