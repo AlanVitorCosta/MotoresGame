@@ -95,7 +95,11 @@ shape = SubResource( 2 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 3 )
 animation = "Idle"
+<<<<<<< HEAD
 frame = 3
+=======
+frame = 2
+>>>>>>> df7042aaeab24f22fbed1958d70aa59d49209494
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -109,7 +113,6 @@ stream = ExtResource( 15 )
 
 [node name="moveFx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -5.0
 
 [node name="musicFx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
@@ -125,6 +128,11 @@ lifetime = 1.7
 speed_scale = 4.5
 randomness = 0.5
 process_material = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="finished" from="deathFx" to="." method="_on_deathFx_finished"]

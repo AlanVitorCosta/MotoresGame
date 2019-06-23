@@ -13,7 +13,7 @@ func _ready():
 	timer = Timer.new()
 	timer.connect("timeout", self, "_on_timer_timeout")
 	add_child(timer)
-	timer.set_wait_time(7)
+	timer.set_wait_time(12)
 	timer.start()
 	pass 
 
