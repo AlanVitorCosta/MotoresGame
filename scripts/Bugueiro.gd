@@ -28,8 +28,8 @@ func _physics_process(delta):
 	else:
 		var collision_info = move_and_collide(velocity * delta, true, true, true)
 		if collision_info:
-			var collision_normal = collision_info.normal	
-			var new_angle = rad2deg(collision_normal.angle_to_point(velocity * delta)) + 35 # << 35 is a random number, I tried others but this works better
+			var collision_normal = collision_info.normal
+			var new_angle = rad2deg(collision_normal.angle_to_point(velocity * delta)) + 35 
 			$AnimatedSprite.rotation_degrees = new_angle;
 			print(new_angle)
 		velocity = move_and_slide(velocity, FLOOR)
@@ -42,7 +42,7 @@ func _on_Area2D_body_entered(body):
 	else:
 		if typeof(body) == 17:
 			first_collision = true
-		
+
 func _on_timer_timeout():
 		print("destruiu")
 		queue_free()
