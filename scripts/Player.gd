@@ -5,9 +5,11 @@ const GRAVITY = 10
 const JUMP_POWER = -450
 const FLOOR = Vector2(0, -1)
 
+onready var timer = get_node("Timer")
 onready var sprite = get_node("Sprite")
 onready var collider2d = get_node("CollisionShape2D")
 
+var mult_vel = 1
 var play_particles = 0
 var tocar_musicFx = 0
 var tocar_deathFx = 0
@@ -23,23 +25,29 @@ func _ready():
 	anim = "Idle"
 	recycling_points = 0
 	$musicFx.play()
+	
+	timer = Timer.new()
+	timer.connect("timeout", self, "_on_timer_timeout")
+	add_child(timer)
+	timer.set_wait_time(5)
+	timer.start()
 	pass 
 
 func _physics_process(delta):
 	collider2d.scale = Vector2 (1, 1)
 	
 	if Input.is_action_pressed("ui_right"):
-		velocity.x = 6*SPEED
+		velocity.x = mult_vel*2.5*SPEED
 		if anim == "Crouch":
-			velocity.x = 4*SPEED
+			velocity.x = mult_vel*2*SPEED
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x = 2*SPEED
+		velocity.x = mult_vel*SPEED
 		if anim == "Crouch":
-			velocity.x = SPEED
+			velocity.x = mult_vel*0.7*SPEED
 	else:
-		velocity.x = 4*SPEED
+		velocity.x = mult_vel*2*SPEED
 		if anim == "Crouch":
-			velocity.x = 2*SPEED
+			velocity.x = mult_vel*1.5*SPEED
 	
 	if Input.is_action_pressed("ui_up") && on_ground && !Input.is_action_pressed("ui_down") && anim != "Falling":
 		velocity.y = JUMP_POWER
@@ -111,3 +119,9 @@ func _on_moveFx_finished():
 
 func _on_deathFx_finished():
 	tocar_deathFx = 2
+
+func _on_timer_timeout():
+	mult_vel += 0.2
+	timer.set_wait_time(5)
+	timer.start()
+	print("aumetando velocity")

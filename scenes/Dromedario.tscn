@@ -11,7 +11,7 @@ radius = 25.6667
 height = 100.92
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 81.2852, 42.3215 )
+extents = Vector2( 82.8468, 42.3215 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -55,7 +55,7 @@ stream = ExtResource( 2 )
 scale = Vector2( 0.88, 0.88 )
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 4
+frame = 7
 playing = true
 __meta__ = {
 "_edit_lock_": true
