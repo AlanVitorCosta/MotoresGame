@@ -5,14 +5,14 @@
 [ext_resource path="res://sprites/Personagem/boyzaum.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Personagem/boyzaum2.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Personagem/abaixar.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Personagem/cair1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Personagem/cair2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Personagem/cair3.png" type="Texture" id=8]
-[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=9]
-[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=10]
-[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=11]
-[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=12]
-[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=13]
+[ext_resource path="res://sprites/Personagem/pulo1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Personagem/pulo2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Personagem/pulo3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Personagem/pulo4.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Personagem/pulo5.png" type="Texture" id=10]
+[ext_resource path="res://sprites/Personagem/cair1.png" type="Texture" id=11]
+[ext_resource path="res://sprites/Personagem/cair2.png" type="Texture" id=12]
+[ext_resource path="res://sprites/Personagem/cair3.png" type="Texture" id=13]
 [ext_resource path="res://sounds/456373__felixyadomi__hop9.wav" type="AudioStream" id=14]
 [ext_resource path="res://sounds/hit_fall.wav" type="AudioStream" id=15]
 [ext_resource path="res://sounds/364999__saul92__arena-cayendo.wav" type="AudioStream" id=16]
@@ -22,7 +22,7 @@
 radius = 28.126
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10, 400 )
+extents = Vector2( 10, 1131.2 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -36,15 +36,15 @@ animations = [ {
 "name": "Crouch",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": false,
-"name": "Falling",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "Falling",
+"speed": 4.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -80,17 +80,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1.948, 372.043 )
+position = Vector2( 30.5479, 211.883 )
 shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
