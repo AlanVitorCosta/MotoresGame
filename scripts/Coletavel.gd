@@ -6,8 +6,10 @@ const RECICLAVEIS = {
 	'lata': 1,
 	'plastico': 2
 }
+
 const GRAVITY = 10
 
+var collider_y_height = rand_range(0.5,1.8)
 var velocity = Vector2()
 var points 
 var itemID = RECICLAVEIS.nothing
@@ -16,17 +18,20 @@ var garrafa_texture = preload("res://icon.png")
 var lata_texture = preload("res://icon.png")
 var plastico_texture = preload("res://icon.png")
 var falling = true
+
 func _ready():
 	$Sprite.texture = spr_texture
 	if(itemID != RECICLAVEIS.nothing):
 		get_sprite_by_itemID(itemID)
-	pass
 	
+	$Altura1.scale = Vector2 (1, collider_y_height)
+	pass
+
 func _physics_process(delta):
 	velocity.y += GRAVITY
 	move_and_collide(velocity * delta)
 	pass
-	
+
 func get_sprite_by_itemID(itemID):
 	if itemID == RECICLAVEIS.garrafa:
 		$Sprite.texture = garrafa_texture
@@ -38,9 +43,9 @@ func get_sprite_by_itemID(itemID):
 		$Sprite.texture = plastico_texture
 		$Sprite.modulate = Color(0,0,255,1)
 	else:
-		return
+		return 
 	pass
-	
+
 func get_points_by_itemID(itemID):
 	if itemID == RECICLAVEIS.garrafa:
 		print("lixo spawn garrafa")
@@ -54,11 +59,11 @@ func get_points_by_itemID(itemID):
 	else:
 		return 0
 	pass
-	
+
 func _on_colletableFx_finished():
 	if $Particles2D.emitting == false:
 		queue_free()
-		
+
 func _on_Position_body_entered(body):
 	if(body.get_name() == "Player"):
 		body.recycling_points = body.recycling_points + get_points_by_itemID(itemID)

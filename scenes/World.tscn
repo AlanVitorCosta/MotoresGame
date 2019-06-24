@@ -21,7 +21,6 @@ collision_mask = 14
 position = Vector2( 526, 48 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
 
 [node name="BackGround" type="ParallaxLayer" parent="ParallaxBackground"]
 editor/display_folded = true
