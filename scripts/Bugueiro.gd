@@ -15,7 +15,7 @@ func _ready():
 	timer = Timer.new()
 	timer.connect("timeout", self, "_on_timer_timeout")
 	add_child(timer)
-	timer.set_wait_time(6)
+	timer.set_wait_time(8)
 	timer.start()
 	pass 
 

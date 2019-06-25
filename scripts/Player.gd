@@ -31,7 +31,7 @@ func _ready():
 	add_child(timer)
 	timer.set_wait_time(5)
 	timer.start()
-	pass 
+	pass
 
 func _physics_process(delta):
 	collider2d.scale = Vector2 (1, 1)
@@ -76,7 +76,7 @@ func _physics_process(delta):
 	if Input.is_key_pressed(KEY_Z):
 		$Camera2D.zoom = Vector2(4,4)
 	else:
-		$Camera2D.zoom = Vector2(1,1)	
+		$Camera2D.zoom = Vector2(1,1)
 	
 	sprite.play(anim)
 	
@@ -106,7 +106,7 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, FLOOR)
 	pass
-	
+
 func set_anim(new_anim):
 	anim = new_anim
 
@@ -124,4 +124,4 @@ func _on_timer_timeout():
 	mult_vel += 0.2
 	timer.set_wait_time(5)
 	timer.start()
-	print("aumetando velocity")
+	print("aumentando velocity")

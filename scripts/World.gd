@@ -21,7 +21,8 @@ const RECICLAVEIS = {
 	'nothing' : -1,
 	'garrafa' : 0,
 	'lata' : 1,
-	'plastico' : 2
+	'plastico' : 2,
+	'pneu' : 3
 }
 
 func _ready():
@@ -144,6 +145,13 @@ func spawn_item(noise_sample):
 		plastico.position = spawn_location
 		plastico.itemID = RECICLAVEIS.plastico
 		add_child(plastico)
+		return
+	if noise_sample < 0.4:
+		print("lixo spawn pneu")
+		var pneu = coletavel.instance()
+		pneu.position = spawn_location
+		pneu.itemID = RECICLAVEIS.pneu
+		add_child(pneu)
 		return
 	else:
 		print("sem lixo")
